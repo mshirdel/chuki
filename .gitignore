@@ -23,3 +23,4 @@ vendor/
 
 /chuki
 /config.yaml
+initdb.d

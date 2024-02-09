@@ -18,11 +18,5 @@ func InitLogrus(cfg Config) {
 	logrus.SetLevel(logLevel)
 	logrus.SetReportCaller(true)
 
-	logrus.SetFormatter(&logrus.TextFormatter{
-		ForceColors:            true,
-		DisableLevelTruncation: true,
-		PadLevelText:           true,
-		TimestampFormat:        time.RFC3339,
-		FullTimestamp:          true,
-	})
+	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: time.RFC3339})
 }

@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  mariadb:
+    container_name: chuki-mariadb
+    image: 'mariadb:10.3-focal'
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Tehran
+      MARIADB_DATABASE: chuki
+      MARIADB_USER: chuki
+      MARIADB_PASSWORD: chuki
+      MARIADB_ROOT_PASSWORD: chuki
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
+    ports:
+      - '3306:3306'
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./initdb.d:/docker-entrypoint-initdb.d:ro
+    command: ["--max_connections=1000"]
+
+volumes:
+  mariadb-data:
+    driver: local

@@ -24,7 +24,7 @@ func serve() {
 	app := app.New(configPath)
 	err := app.InitAll()
 	if err != nil {
-		logrus.Errorf("error in initializing application: %s", err)
+		logrus.Fatalf("error in initializing application: %s", err)
 	}
 
 	logrus.Info("app started")
