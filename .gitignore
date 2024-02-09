@@ -22,3 +22,4 @@ vendor/
 .idea/
 
 /chuki
+/config.yaml

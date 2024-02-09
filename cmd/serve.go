@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/mshirdel/chuki/app"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -12,20 +12,20 @@ var serveCmd = &cobra.Command{
 	Short: "Start API server",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("serve called")
+		serve()
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(serveCmd)
+}
 
-	// Here you will define your flags and configuration settings.
+func serve() {
+	app := app.New(configPath)
+	err := app.InitAll()
+	if err != nil {
+		logrus.Errorf("error in initializing application: %s", err)
+	}
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// serveCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// serveCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	logrus.Info("app started")
 }
